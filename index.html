@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>GimStudios — разработка сайтов</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0c12;
+            font-family: 'Inter', sans-serif;
+            color: #eef2ff;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        header {
+            background: rgba(10, 12, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c7e2ff, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            color: #94a3ff;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .btn-outline:hover {
+            background: #3b82f6;
+            color: #0a0c12;
+            box-shadow: 0 0 15px #3b82f6;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 0 30px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e6;
+        }
+        .nick {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            margin-top: 12px;
+            font-family: monospace;
+            background: #0e1320;
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 60px;
+            border: 1px solid #3b82f655;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+        .nick:hover {
+            background: #1a2a4a;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 50px 0 30px;
+            border-left: 5px solid #3b82f6;
+            padding-left: 24px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .service-card {
+            background: rgba(18, 22, 35, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 32px;
+            padding: 28px 24px;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59,130,246,0.2);
+        }
+        .service-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #f0f4ff;
+        }
+        .service-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #3b82f6;
+            margin: 12px 0;
+            text-shadow: 0 0 6px #3b82f6;
+        }
+        .service-desc {
+            font-size: 0.9rem;
+            color: #b9c7dd;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .btn-pulse {
+            background: linear-gradient(90deg, #1e2a4a, #2563eb);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 0 8px #3b82f6;
+            transition: 0.2s;
+        }
+        .btn-pulse:hover {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            box-shadow: 0 0 20px #3b82f6;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #1e293b;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #7e8ba3;
+        }
+        .footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .footer-btn {
+            background: none;
+            border: 2px solid #3b82f6;
+            color: #94a3ff;
+            padding: 14px 40px;
+            border-radius: 60px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.2s;
+            min-width: 180px;
+        }
+        .footer-btn:hover {
+            background: #3b82f6;
+            color: #0a0c12;
+            box-shadow: 0 0 20px #3b82f6;
+        }
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer-links a {
+            color: #6ea8fe;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: white;
+            text-shadow: 0 0 6px #3b82f6;
+        }
+        /* Модалка Telegram */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #141a2a;
+            border-radius: 32px;
+            max-width: 480px;
+            width: 90%;
+            padding: 28px;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 0 30px #3b82f660;
+            text-align: center;
+        }
+        .modal-content h3 {
+            color: #f0f4ff;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .modal-content p {
+            color: #b9c7dd;
+            margin-bottom: 20px;
+        }
+        .modal-link-box {
+            background: #0e1320;
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            word-break: break-all;
+            border: 1px solid #2d3a5e;
+        }
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .copy-btn:active {
+            transform: scale(0.96);
+        }
+        .close-modal-btn {
+            margin-top: 20px;
+            background: none;
+            border: 1px solid #3b82f6;
+            color: #94a3ff;
+            padding: 8px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        .modal .small-note {
+            margin-top: 14px;
+            font-size: 13px;
+            color: #7e8ba3;
+        }
+        /* Модалка правил */
+        .rules-modal-content {
+            max-width: 560px;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .rules-modal-content h2 {
+            text-align: center;
+        }
+        .modal-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .tab-btn {
+            background: #1e2a4a;
+            border: 1px solid #2d3a5e;
+            color: #94a3ff;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .tab-btn.active {
+            background: #3b82f6;
+            color: #0a0c12;
+            border-color: #3b82f6;
+        }
+        .tab-content {
+            display: none;
+            color: #b9c7dd;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content h3 {
+            color: #f0f4ff;
+            margin: 16px 0 8px;
+        }
+        .tab-content ul {
+            padding-left: 20px;
+        }
+        .modal-accept {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .modal-accept label {
+            color: #b9c7dd;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .modal-accept button {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.2s;
+        }
+        .modal-accept button:hover {
+            box-shadow: 0 0 20px #3b82f6;
+        }
+        @media (max-width: 780px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.6rem; }
+            .header-flex { flex-direction: column; align-items: center; }
+            .footer-btn { padding: 12px 24px; font-size: 1rem; min-width: 140px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="header-flex">
+            <div class="logo">✦ GimStudios ✦</div>
+            <div class="nav-buttons">
+                <button class="btn-outline" id="scrollBtn">Услуги</button>
+                <button class="btn-outline" id="supportBtn">Поддержка</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>GimStudios — разработка</h1>
+        <p>Сайты, боты, дизайн.</p>
+        <div class="nick" id="easterEggNick"> разработчик: 𝑲𝒊𝒕𝒕𝒚_𝑲𝒊𝒕𝒕𝒚𝒔</div>
+    </div>
+
+    <div class="section-title" id="pricesSection"> УСЛУГИ</div>
+    <div class="services-grid" id="servicesGrid"></div>
+
+    <div class="footer">
+        <p>© 2026 GimStudios — разработка, поддержка</p>
+        <p> dimastvincs@gmail.com</p>
+        <div class="footer-links">
+            <a href="https://t.me/GimPrograms_bot" target="_blank"> Telegram-бот: @GimPrograms_bot</a>
+            <a href="https://dimastwa0sopsi.github.io/GimProgramsWeb/" target="_blank"> Наш сайт: GimProgramsWeb</a>
+        </div>
+        <div class="footer-buttons">
+            <button class="footer-btn" id="rulesBtn"> ПРАВИЛА</button>
+            <button class="footer-btn" id="supportFooterBtn"> ПОДДЕРЖКА</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модалка Telegram -->
+<div id="telegramModal" class="modal">
+    <div class="modal-content">
+        <h3>📱 Наш Telegram</h3>
+        <p>Скопируйте ссылку и вставьте в браузер или Telegram:</p>
+        <div class="modal-link-box">
+            <span id="telegramLinkDisplay">https://t.me/GimPrograms_bot</span>
+            <button class="copy-btn" id="copyTelegramLink" </> Копировать</button>
+        </div>
+        <div class="small-note">
+             Иногда ссылка не открывается. Скопируйте её и вставьте вручную в Google или Telegram.
+        </div>
+        <button class="close-modal-btn" id="closeTelegramModal">Закрыть</button>
+    </div>
+</div>
+
+<!-- Модалка правил -->
+<div id="rulesModal" class="modal">
+    <div class="modal-content rules-modal-content">
+        <h2> Правила GimStudios</h2>
+        <div class="modal-tabs">
+            <button class="tab-btn active" data-tab="terms">Условия</button>
+            <button class="tab-btn" data-tab="return">Возврат</button>
+            <button class="tab-btn" data-tab="privacy">Конфиденциальность</button>
+            <button class="tab-btn" data-tab="support">Поддержка</button>
+        </div>
+
+        <div id="tab-terms" class="tab-content active">
+            <h3>1. Общие положения</h3>
+            <p>Используя сайт и услуги GimStudios, вы соглашаетесь с настоящими правилами.</p>
+            <h3>2. Услуги и цены</h3>
+            <p>Все цены указаны на сайте в рублях. Стоимость фиксируется в момент заказа.</p>
+            <h3>3. Порядок заказа</h3>
+            <ul><li>Заказ оформляется через кнопку «Купить» на сайте.</li><li>После оплаты мы свяжемся с вами в течение 24 часов.</li><li>Срок выполнения обсуждается индивидуально.</li></ul>
+            <h3>4. Ответственность</h3>
+            <p>GimStudios не несёт ответственности за убытки, возникшие в результате использования или невозможности использования наших продуктов.</p>
+        </div>
+
+        <div id="tab-return" class="tab-content">
+            <h3>Условия возврата</h3>
+            <ul><li>Если работа ещё не начата — полный возврат.</li><li>Если частично выполнена — пропорциональный возврат.</li><li>После полного завершения — возврат не производится.</li></ul>
+        </div>
+
+        <div id="tab-privacy" class="tab-content">
+            <h3>Политика конфиденциальности</h3>
+            <ul><li>Мы собираем только добровольно предоставленные данные.</li><li>Данные используются только для связи и выполнения заказов.</li><li>Мы не передаём данные третьим лицам.</li><li>Вы можете запросить удаление данных в любой момент.</li></ul>
+        </div>
+
+        <div id="tab-support" class="tab-content">
+            <h3>Поддержка</h3>
+            <p>Свяжитесь с нами:</p>
+            <ul>
+                <li>Telegram-бот: <a href="https://t.me/GimPrograms_bot" target="_blank" style="color:#3b82f6;">@GimPrograms_bot</a></li>
+                <li> Email: <a href="mailto:dimastvincs@gmail.com" style="color:#3b82f6;">dimastvincs@gmail.com</a></li>
+            </ul>
+        </div>
+
+        <div class="modal-accept">
+            <label>
+                <input type="checkbox" id="acceptRules"> Я прочитал(а) и согласен(на) на правила GimStudios.
+            </label>
+            <br>
+            <button id="acceptRulesBtn" disabled> Принять</button>
+            <br>
+            <button class="close-modal-btn" id="closeRulesModal">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ========== УСЛУГИ ==========
+    const services = [
+        { title: "🌐 Сайт под ключ", price: "200 ₽", desc: "Создание и настройка сайта навсегда, без скрытых платежей. GitHub хостинг, SSL, неон-дизайн, 100% защита." },
+        { title: "🤖 Telegram-бот", price: "50 ₽", desc: "Боты на BotHost — стабильный хостинг 24/7, язык Python. Для продаж, администрирования, игр и т.д." },
+        { title: "🎨 Дизайн", price: "100 ₽", desc: "Разработка концептов: киберпанк, неон-геймерский, минимализм. Адаптив, анимации, glow-эффекты под ваш вкус." }
+    ];
+
+    function renderServices() {
+        const grid = document.getElementById('servicesGrid');
+        grid.innerHTML = services.map((service, idx) => `
+            <div class="service-card">
+                <div class="service-title">${service.title}</div>
+                <div class="service-price">${service.price}</div>
+                <div class="service-desc">${service.desc}</div>
+                <button class="btn-pulse buy-now" data-service="${service.title}">💎 КУПИТЬ</button>
+            </div>
+        `).join('');
+
+        document.querySelectorAll('.buy-now').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (localStorage.getItem('gimstudios_rules_accepted') !== 'true') {
+                    openRulesModal();
+                    return;
+                }
+                window.open('https://t.me/GimPrograms_bot', '_blank');
+            });
+        });
+    }
+
+    // ========== ПАСХАЛКА ==========
+    let easterEggCount = 0;
+    document.getElementById('easterEggNick').addEventListener('click', () => {
+        easterEggCount++;
+        if (easterEggCount >= 10) {
+            alert('🎉 Спасибо что нашли пасхалку! Ваш промокод: #ПАСХАЛКА28');
+            easterEggCount = 0;
+        }
+    });
+
+    // ========== МОДАЛКА TELEGRAM ==========
+    const tgModal = document.getElementById('telegramModal');
+    function openTelegramModal() { tgModal.classList.add('active'); }
+    function closeTelegramModal() { tgModal.classList.remove('active'); }
+    document.getElementById('supportBtn').addEventListener('click', openTelegramModal);
+    document.getElementById('supportFooterBtn').addEventListener('click', openTelegramModal);
+    document.getElementById('closeTelegramModal').addEventListener('click', closeTelegramModal);
+    tgModal.addEventListener('click', (e) => { if (e.target === tgModal) closeTelegramModal(); });
+
+    document.getElementById('copyTelegramLink').addEventListener('click', () => {
+        const link = document.getElementById('telegramLinkDisplay').textContent;
+        navigator.clipboard.writeText(link).then(() => {
+            const btn = document.getElementById('copyTelegramLink');
+            btn.textContent = ' Скопировано!';
+            setTimeout(() => { btn.textContent = ' Копировать'; }, 2000);
+        }).catch(() => {
+            alert('❌ Не удалось скопировать. Скопируйте ссылку вручную: ' + link);
+        });
+    });
+
+    // ========== МОДАЛКА ПРАВИЛ ==========
+    const rulesModal = document.getElementById('rulesModal');
+    const acceptCheckbox = document.getElementById('acceptRules');
+    const acceptBtn = document.getElementById('acceptRulesBtn');
+
+    function openRulesModal() {
+        rulesModal.classList.add('active');
+        if (localStorage.getItem('gimstudios_rules_accepted') === 'true') {
+            acceptCheckbox.checked = true;
+            acceptBtn.disabled = false;
+        }
+    }
+    function closeRulesModal() { rulesModal.classList.remove('active'); }
+
+    document.getElementById('rulesBtn').addEventListener('click', openRulesModal);
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+    });
+
+    acceptCheckbox.addEventListener('change', () => {
+        acceptBtn.disabled = !acceptCheckbox.checked;
+    });
+    acceptBtn.addEventListener('click', () => {
+        if (acceptCheckbox.checked) {
+            localStorage.setItem('gimstudios_rules_accepted', 'true');
+            closeRulesModal();
+            alert(' Спасибо! Теперь вы можете оформлять заказы.');
+        }
+    });
+    document.getElementById('closeRulesModal').addEventListener('click', closeRulesModal);
+    rulesModal.addEventListener('click', (e) => { if (e.target === rulesModal) closeRulesModal(); });
+
+    document.getElementById('scrollBtn').addEventListener('click', () => {
+        document.getElementById('pricesSection').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    renderServices();
+</script>
+</body>
+</html>
